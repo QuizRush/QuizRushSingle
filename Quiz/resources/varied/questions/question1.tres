@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="QuizRush" load_steps=2 format=3 uid="uid://dmhp7m458pf21"]
+
+[ext_resource type="Script" path="res://Quiz/Scripts/resources/question.gd" id="1_hj7fe"]
+
+[resource]
+script = ExtResource("1_hj7fe")
+question_info = "電流は何で測定されますか?"
+type = 0
+options = Array[String](["ボルトメーター", "オシロスコープ", "アンペアメーター", "レオメーター"])
+correct = "アンペアメーター"

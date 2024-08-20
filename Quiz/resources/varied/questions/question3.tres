@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="QuizRush" load_steps=2 format=3 uid="uid://but10akf8tan1"]
+
+[ext_resource type="Script" path="res://Quiz/Scripts/resources/question.gd" id="1_kog2l"]
+
+[resource]
+script = ExtResource("1_kog2l")
+question_info = "漢字「供」の読み方はどれですか?"
+type = 0
+options = Array[String](["きょう", "きょ", "きゅう", "きょく"])
+correct = "A) きょうB) きょC) きゅうD) きょく"

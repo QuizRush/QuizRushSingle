@@ -1,0 +1,69 @@
+[gd_scene load_steps=11 format=3 uid="uid://btpwvceblbai2"]
+
+[ext_resource type="Texture2D" uid="uid://w4uevn7obhnj" path="res://assets/background/Free Pixel Art Forest/Preview/Background.png" id="1_icckb"]
+[ext_resource type="Script" path="res://Levels/level.gd" id="1_sanel"]
+[ext_resource type="PackedScene" uid="uid://d0hr74xcha3ft" path="res://Entities/Player/player.tscn" id="2_w5err"]
+[ext_resource type="PackedScene" uid="uid://ds5wykr2uekah" path="res://Entities/Enemies/skeleton_warrior.tscn" id="4_pmoyv"]
+[ext_resource type="Script" path="res://Levels/mode_switcher.gd" id="5_ahu8o"]
+[ext_resource type="Script" path="res://Levels/Battle.gd" id="6_82wk4"]
+[ext_resource type="Script" path="res://Levels/Quiz.gd" id="7_ffxdn"]
+[ext_resource type="PackedScene" uid="uid://yu2ksfqa2dr6" path="res://UI/pause_menu.tscn" id="8_kpk0k"]
+[ext_resource type="PackedScene" uid="uid://cnyldelig4lop" path="res://health_changed_manager.tscn" id="10_2xdya"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_1n5jn"]
+
+[node name="Level" type="Node2D"]
+script = ExtResource("1_sanel")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(990, 324)
+texture = ExtResource("1_icckb")
+region_enabled = true
+region_rect = Rect2(0, 137.571, 1980, 655.429)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+collision_layer = 8
+collision_mask = 7
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(1030, 593)
+shape = SubResource("WorldBoundaryShape2D_1n5jn")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(0, 250)
+rotation = 1.5708
+shape = SubResource("WorldBoundaryShape2D_1n5jn")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(1980, 250)
+rotation = 4.71239
+shape = SubResource("WorldBoundaryShape2D_1n5jn")
+
+[node name="Player" parent="." instance=ExtResource("2_w5err")]
+position = Vector2(1030, 527)
+
+[node name="Projectiles" type="Node2D" parent="."]
+
+[node name="Enemy" parent="." instance=ExtResource("4_pmoyv")]
+position = Vector2(764, 522)
+
+[node name="Mode_switcherlllll" type="Node" parent="." node_paths=PackedStringArray("current_mode")]
+script = ExtResource("5_ahu8o")
+current_mode = NodePath("Quiz")
+
+[node name="Battle" type="Node" parent="Mode_switcherlllll"]
+script = ExtResource("6_82wk4")
+
+[node name="Quiz" type="Node" parent="Mode_switcherlllll"]
+script = ExtResource("7_ffxdn")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="PauseMenu" parent="CanvasLayer" instance=ExtResource("8_kpk0k")]
+visible = false
+offset_left = -70.0
+offset_top = 31.0
+offset_right = -70.0
+offset_bottom = 31.0
+
+[node name="HealthChangedManager" parent="." instance=ExtResource("10_2xdya")]

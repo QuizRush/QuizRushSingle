@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="QuizRush" load_steps=2 format=3 uid="uid://b7g18fbi43ji1"]
+
+[ext_resource type="Script" path="res://Quiz/Scripts/resources/question.gd" id="1_ftfel"]
+
+[resource]
+script = ExtResource("1_ftfel")
+question_info = "漢字「済」の意味は何ですか?"
+type = 0
+options = Array[String](["すむ", "あう", "やめる", "みる"])
+correct = "すむ"

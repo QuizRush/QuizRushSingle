@@ -1,0 +1,177 @@
+[gd_scene load_steps=8 format=3 uid="uid://b17d1wuv4hjhn"]
+
+[ext_resource type="Script" path="res://Quiz/Scripts/controllers/game_controller.gd" id="1_qaqys"]
+[ext_resource type="Resource" uid="uid://b2w0x1xfmcehy" path="res://Quiz/resources/varied/theme/theme_varied.tres" id="2_qpiw2"]
+[ext_resource type="AudioStream" uid="uid://gfwh6m41iwae" path="res://Quiz/audio/correct-156911.mp3" id="3_bjsf3"]
+[ext_resource type="AudioStream" uid="uid://cna8x3blubbgh" path="res://Quiz/audio/wrong-answer-21-199825.mp3" id="4_wjmov"]
+
+[sub_resource type="Animation" id="Animation_ju7vy"]
+length = 0.001
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:material:shader_parameter/lod")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("PanelContainer:modulate:a")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+
+[sub_resource type="Animation" id="Animation_qpxj3"]
+resource_name = "blur"
+length = 0.3
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:material:shader_parameter/lod")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 0.8, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.3)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("PanelContainer:modulate:a")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.3)
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_8y37f"]
+_data = {
+"RESET": SubResource("Animation_ju7vy"),
+"blur": SubResource("Animation_qpxj3")
+}
+
+[node name="Main1" type="CanvasLayer"]
+script = ExtResource("1_qaqys")
+quiz = ExtResource("2_qpiw2")
+color_right = Color(0.495259, 0.938532, 0.632891, 1)
+color_wrong = Color(0.710996, 0.149914, 1.92523e-07, 1)
+
+[node name="Control" type="Control" parent="."]
+custom_minimum_size = Vector2(1080, 720)
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -540.0
+offset_top = -360.0
+offset_right = 540.0
+offset_bottom = 360.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="qInfo" type="VBoxContainer" parent="Control"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -494.0
+offset_right = 506.0
+offset_bottom = 504.0
+grow_horizontal = 2
+
+[node name="QuestionText" type="Label" parent="Control/qInfo"]
+visible = false
+custom_minimum_size = Vector2(1000, 100)
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "QuizRush"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="imageHolder" type="Panel" parent="Control/qInfo"]
+custom_minimum_size = Vector2(1000, 400)
+layout_mode = 2
+
+[node name="questionImage" type="TextureRect" parent="Control/qInfo/imageHolder"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="qHolder" type="VBoxContainer" parent="Control"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -494.0
+offset_top = -204.0
+offset_right = 506.0
+offset_bottom = 83.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/separation = 10
+
+[node name="Option1" type="Button" parent="Control/qHolder"]
+custom_minimum_size = Vector2(1000, 50)
+layout_mode = 2
+
+[node name="Option2" type="Button" parent="Control/qHolder"]
+custom_minimum_size = Vector2(1000, 50)
+layout_mode = 2
+
+[node name="Option3" type="Button" parent="Control/qHolder"]
+custom_minimum_size = Vector2(1000, 50)
+layout_mode = 2
+
+[node name="Option4" type="Button" parent="Control/qHolder"]
+custom_minimum_size = Vector2(1000, 50)
+layout_mode = 2
+
+[node name="ColorRect" type="ColorRect" parent="."]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.703219, 1, 0.489269, 1)
+
+[node name="Label2" type="Label" parent="ColorRect"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -20.0
+offset_right = 20.0
+offset_bottom = 23.0
+grow_horizontal = 2
+text = "psad"
+
+[node name="Correct" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_bjsf3")
+
+[node name="Incorrect" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_wjmov")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_8y37f")
+}
